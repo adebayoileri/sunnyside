@@ -1,0 +1,81 @@
+// COLORS
+
+$soft-red: hsl(7, 99%, 70%);
+$yellow: hsl(51, 100%, 49%);
+$dark-desaturated-cyan: hsl(167, 40%, 24%); //(graphic design text)
+$dark-blue: hsl(198, 62%, 26%); // (photography text)
+$dark-moderate-cyan: hsl(168, 34%, 41%); //footer
+
+// ### Neutral
+
+$very-dark-desaturated-blue: hsl(212, 27%, 19%);
+$very-dark-grayish-blue: hsl(213, 9%, 39%);
+$dark-grayish-blue: hsl(232, 10%, 55%);
+$grayish-blue: hsl(210, 4%, 67%);
+$white: hsl(0, 0%, 100%);
+
+$bp-big-desktop: 90em;
+$bp-desktop: 65em;
+$bp-tablet-land: 56.25em;
+$bp-tablet-port: 74em;
+
+$bp-phone: 37.5em;
+
+//
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+  font-family: "Barlow", sans-serif;
+  font-size: 62.5%;
+  --webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+
+  @media only screen and (min-width: $bp-big-desktop) {
+    font-size: 70%;
+  }
+  @media only screen and (max-width: $bp-tablet-land) {
+    font-size: 56.25%;
+  }
+  @media only screen and (max-width: $bp-tablet-port) {
+    font-size: 50%;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns:
+    [full-start] 1fr [page-start] repeat(6, [col-start] 1fr [col-end])
+    [page-end] 1fr [full-end];
+  grid-template-rows: 100vh repeat(3, 70vh) minmax(80vh, min-content) min-content 40vh;
+
+  @media only screen and (max-width: $bp-phone) {
+    grid-template-rows: 90vh repeat(4, 60vh) repeat(2, 68vh) repeat(3, min-content min-content);
+  }
+}
+
+// TYPOGRAPHY
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap");
+.heading-secondary {
+  font-family: "Fraunces", serif;
+  font-size: 4rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: $dark-blue;
+}
+
+.card__text {
+  font-size: 1.5rem;
+  font-family: "Barlow", sans-serif;
+  line-height: 1.8;
+  font-weight: 600;
+  color: $dark-grayish-blue;
+}
