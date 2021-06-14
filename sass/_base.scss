@@ -54,22 +54,25 @@ html {
   grid-template-columns:
     [full-start] 1fr [page-start] repeat(6, [col-start] 1fr [col-end])
     [page-end] 1fr [full-end];
-  grid-template-rows: 100vh repeat(3, 70vh) minmax(80vh, min-content) min-content 40vh;
+  grid-template-rows: 90vh repeat(3, 70vh) minmax(80vh, min-content) min-content 40vh;
 
   @media only screen and (max-width: $bp-phone) {
-    grid-template-rows: 90vh repeat(4, 60vh) repeat(2, 68vh) repeat(3, min-content min-content);
+    grid-template-rows: 90vh repeat(4, 60vh) repeat(2, 68vh) repeat(
+        3,
+        min-content min-content
+      );
   }
 }
 
 // TYPOGRAPHY
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;900&display=swap");
 .heading-secondary {
   font-family: "Fraunces", serif;
   font-size: 4rem;
   line-height: 1.2;
   font-weight: 700;
-  color: $dark-blue;
+  color: $very-dark-desaturated-blue;
 }
 
 .card__text {

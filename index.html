@@ -17,6 +17,7 @@
   </head>
   <body>
     <div class="container">
+      <div class="overlay" id="mobile-overlay"></div>
       <header class="header">
         <nav class="navigation">
           <div class="navigation__logo">sunnyside</div>
@@ -30,7 +31,19 @@
               </li>
             </ul>
           </div>
-          <div class="navigation__menu"></div>
+          <div class="navigation__menu" id="mobile-btn">
+            <img src="/images/icon-hamburger.svg" alt="hambuger" />
+          </div>
+        </nav>
+        <nav class="navigation--mobile" id="mobile-menu">
+          <ul class="nav-links nav-links--column">
+            <li class="nav-item nav-item--cyan nav-item--column">About</li>
+            <li class="nav-item nav-item--cyan nav-item--column">Services</li>
+            <li class="nav-item nav-item--cyan nav-item--column">Projects</li>
+            <li class="nav-item nav-item--cyan nav-item--column">
+              <a href="#" class="btn btn--solid-yellow"> Contact </a>
+            </li>
+          </ul>
         </nav>
         <div class="hero">
           <h1 class="hero-text">We are creatives</h1>
@@ -198,4 +211,14 @@
       </footer>
     </div>
   </body>
+  <script>
+    let mobileMenu = document.querySelector("#mobile-menu");
+    let mobileBtn = document.querySelector("#mobile-btn");
+    let mobileOverlay = document.querySelector("#mobile-overlay");
+
+    mobileBtn.addEventListener("click", (e) => {
+      mobileMenu.classList.toggle("d-flex");
+      mobileOverlay.classList.toggle("d-flex");
+    });
+  </script>
 </html>

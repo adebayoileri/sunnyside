@@ -9,8 +9,18 @@
   display: flex;
   flex-direction: column;
 }
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 3;
+  display: none;
+  backdrop-filter: blur(15px);
+  overflow: hidden;
+}
 
 .navigation {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,7 +29,7 @@
     color: $white;
     letter-spacing: -1px;
     font-size: 3.6rem;
-    font-weight: 900;
+    font-weight: 700;
   }
 
   &__screen {
@@ -31,28 +41,32 @@
 
   &__menu {
     display: none;
-    position: relative;
-    width: 4.5rem;
-    background-color: $white;
-    height: 0.2rem;
+    z-index: 4;
     cursor: pointer;
 
-    &::before,
-    &::after {
-      position: absolute;
-      content: "";
-      width: 4.5rem;
-      background-color: $white;
-      height: 0.2rem;
-    }
-    &::before {
-      top: 1.2rem;
-    }
-    &::after {
-      top: -1.2rem;
-    }
     @media only screen and (max-width: $bp-phone) {
       display: flex;
+    }
+  }
+
+  &--mobile {
+    z-index: 4;
+    display: none;
+    position: absolute;
+    top: 15%;
+    width: 80%;
+    animation: fadeInUp 0.6s;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      height: 0;
+      width: 0;
+      right: 0;
+      top: -16%;
+      border-bottom: 32px solid $white;
+      border-left: 25px solid transparent;
     }
   }
 }
@@ -61,26 +75,55 @@
   text-decoration: none;
   padding: 1.2rem 2.2rem;
   border-radius: 100px;
+  text-transform: uppercase;
+  transition: all 0.3s;
 
   &--solid-white {
     background-color: $white;
-    color: $dark-moderate-cyan;
+    color: $very-dark-desaturated-blue;
+    font-family: "Fraunces", serif;
+
+    &:hover {
+      background-color: rgba($white, 0.4);
+      color: $white;
+    }
+  }
+  &--solid-yellow {
+    background-color: $yellow;
+    color: $white;
+    font-family: "Fraunces", serif;
   }
 }
+
+.d-flex {
+  display: flex !important;
+}
+
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 5%;
 
+  @media only screen and (min-width: $bp-big-desktop) {
+    margin-top: 10%;
+  }
+  @media only screen and (max-width: $bp-phone) {
+    margin-top: 40%;
+  }
   &-text {
     text-transform: uppercase;
     font-size: 5rem;
     font-weight: 900;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     word-spacing: 1rem;
     text-align: center;
     font-family: "Fraunces", serif;
+
+    @media only screen and (max-width: $bp-phone) {
+      letter-spacing: 3px;
+      word-spacing: 0.6rem;
+    }
   }
   &-arrow {
     margin-top: 4rem;
@@ -93,6 +136,7 @@
     }
   }
 }
+
 .card {
   &__link {
     width: 13rem;
@@ -105,6 +149,7 @@
     color: $dark-blue;
     border-radius: 40px;
     background-position: left;
+
     &--red {
       background-image: linear-gradient(
         0deg,
@@ -338,16 +383,16 @@
   justify-content: center;
   align-items: center;
   grid-column: full-start / -1;
-  background-color: rgba($dark-moderate-cyan, 0.4);
+  background-color: #90d4c5;
   text-align: center;
   padding: 6rem 0;
 
   &__logo {
+    font-family: "Barlow", sans-serif;
     color: $dark-desaturated-cyan;
-
-    letter-spacing: -1px;
-    font-size: 5rem;
-    font-weight: 600;
+    letter-spacing: -2px;
+    font-size: 4.5rem;
+    font-weight: 700;
     margin-bottom: 5rem;
   }
   &__content {
@@ -364,15 +409,30 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+
+    &--column {
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 2rem;
+      background: $white;
+    }
   }
+
   &-item {
     font-size: 1.4rem;
-
     list-style: none;
     font-weight: 600;
     cursor: pointer;
+
+    &--column {
+      margin-bottom: 2rem;
+    }
+
     &--cyan {
       color: $dark-desaturated-cyan;
+      &:hover {
+        color: $white;
+      }
     }
     &--white {
       color: $white;
@@ -385,11 +445,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 6rem;
+    margin: 5rem 0;
     width: 50%;
   }
   &__img {
     cursor: pointer;
+    fill: $white;
   }
 }
 
@@ -402,5 +463,17 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
